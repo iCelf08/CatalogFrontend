@@ -9,7 +9,7 @@ import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles((theme) => ({
     cardMedia: {
-        paddingTop: '56.25%', // 16:9
+        paddingTop: '56.25%', // Aspect ratio 16:9
     },
     link: {
         margin: theme.spacing(1, 1.5),
@@ -42,43 +42,46 @@ const useStyles = makeStyles((theme) => ({
 
 const Products = ({ products }) => {
     const classes = useStyles();
-    if (!Array.isArray(products) || products.length === 0) return <p>Can not find any products, sorry.</p>;
+    if (!products || products.length === 0) return <p>Can not find any products, sorry.</p>;
     return (
-        <React.Fragment>
-            <Container maxWidth="md" component="main">
-                <Grid container spacing={5} alignItems="flex-end">
-                    {products.map((product) => (
-                        <Grid item key={product.id} xs={12} md={4}>
-                            <Card className={classes.card}>
-                                <CardMedia
-                                    className={classes.cardMedia}
-                                    image="https://source.unsplash.com/random"
-                                    title="Image title"
-                                />
-                                <CardContent className={classes.cardContent}>
-                                    <Typography
-                                        gutterBottom
-                                        variant="h6"
-                                        component="h2"
-                                        className={classes.productTitle}
-                                    >
-                                        {product.title.substr(0, 50)}...
-                                    </Typography>
-                                    <div className={classes.productText}>
-                                        <Typography
-                                            component="p"
-                                            color="textPrimary"
-                                        >
-                                            {product.excerpt.substr(0, 60)}...
-                                        </Typography>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        </Grid>
-                    ))}
-                </Grid>
-            </Container>
-        </React.Fragment>
+        <Container maxWidth="md" component="main">
+            <Grid container spacing={5} alignItems="flex-end">
+                {products.map((product) => (
+                    <Grid item key={product.id} xs={12} sm={6} md={4}>
+                        <Card className={classes.card}>
+                            <CardMedia
+                                className={classes.cardMedia}
+                                image={product.image || "https://source.unsplash.com/random"}
+                                title={product.name}
+                            />
+                            <CardContent className={classes.cardContent}>
+                                <Typography
+                                    gutterBottom
+                                    variant="h6"
+                                    component="h2"
+                                    className={classes.productTitle}
+                                >
+                                    {product.name}
+                                </Typography>
+                                <Typography
+                                    component="p"
+                                    color="textPrimary"
+                                    className={classes.productText}
+                                >
+                                    {product.description}
+                                </Typography>
+                                <Typography
+                                    component="p"
+                                    color="textSecondary"
+                                >
+                                    Price: ${product.price}
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                ))}
+            </Grid>
+        </Container>
     );
 };
 

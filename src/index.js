@@ -6,17 +6,19 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './header';
 import Footer from './footer';
 import Register from './register';
+import SignIn from './signIn';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Router>
-      <Header /> {/* Rendered on all pages */}
-      <Routes> {/* All Route components must be children of Routes */}
+      <Header /> 
+      <Routes> 
         <Route path="/" element={<App />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<SignIn />} />
       </Routes>
-      <Footer /> {/* Rendered on all pages */}
+      <Footer />
     </Router>
   </React.StrictMode>
 );

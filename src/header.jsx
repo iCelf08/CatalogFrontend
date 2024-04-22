@@ -44,7 +44,7 @@ function Header() {
 							underline="none"
 							color="textPrimary"
 						>
-							Blog
+							Ecatalogue
 						</Link>
 					</Typography>
 					<nav>

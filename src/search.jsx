@@ -3,12 +3,13 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { makeStyles } from '@material-ui/core/styles';
+import { fade, makeStyles } from '@material-ui/core/styles';
 import { NavLink } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
 import SearchBar from 'material-ui-search-bar';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+
 const useStyles = makeStyles((theme) => ({
 	appBar: {
 		borderBottom: `1px solid ${theme.palette.divider}`,
@@ -23,13 +24,13 @@ const useStyles = makeStyles((theme) => ({
 
 function Header() {
 	const classes = useStyles();
-	let navigate = useNavigate();
-	const [data, setData] =useState({ search: ''})
-	
+	let history = useHistory();
+	const [data, setData] = useState({ search: '' });
+
 	const goSearch = (e) => {
-		navigate({
+		history.push({
 			pathname: '/search/',
-			search: '?name=' + data.search,
+			search: '?search=' + data.search,
 		});
 		window.location.reload();
 	};
@@ -55,7 +56,7 @@ function Header() {
 							underline="none"
 							color="textPrimary"
 						>
-							Ecatalogue
+							Blog
 						</Link>
 					</Typography>
 

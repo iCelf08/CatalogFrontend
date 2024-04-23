@@ -6,6 +6,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme) => ({
     cardMedia: {
@@ -33,27 +34,31 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: theme.spacing(2),
     },
     card: {
-        // Define styles for Card if necessary
     },
     cardContent: {
-        // Define styles for CardContent if necessary
     }
 }));
 
 const Products = ({ products }) => {
     const classes = useStyles();
-    if (!products || products.length === 0) return <p>Can not find any products, sorry.</p>;
+    if (!products || products.length === 0) return <p >No products for you Yet.. Hit the Register or Sign in bouton</p>;
     return (
         <Container maxWidth="md" component="main">
             <Grid container spacing={5} alignItems="flex-end">
                 {products.map((product) => (
                     <Grid item key={product.id} xs={12} sm={6} md={4}>
                         <Card className={classes.card}>
+                            <Link 
+                            color="textPrimary"
+                            href={'product/' + product.id}
+                            className={classes.link}
+                            >
                             <CardMedia
                                 className={classes.cardMedia}
                                 image={product.image || "https://source.unsplash.com/random"}
                                 title={product.name}
                             />
+                            </Link>
                             <CardContent className={classes.cardContent}>
                                 <Typography
                                     gutterBottom
